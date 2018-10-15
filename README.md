@@ -1,0 +1,62 @@
+# Lingo
+
+Lingo lets developers define variables in yml-files in the same style as the normal lang-files but that can be viewed and translated in the SilverStripe admin.
+
+## TODO
+* ~~Mark obsolete variables from yml-file in DataObject so that the admin knows this and can delete them if he wants~~
+* ~~Make Lingo translations work with variables~~ 
+## Requirements
+
+* SilverStripe 4.2+
+
+## How to use
+
+Set the location of the file/s that should be used for the texts to be handled in the yml config file of your project. Ie:  `app/_config/mysite.yml`
+
+`moduleCatalog` is the catalog that the `textCatalog` is placed in (at the "first level").
+
+`textCatalog` is the catalog that will contain the yml-files to be read by the module.
+
+Example:
+
+mysite/admintext
+
+Where `app` is the "moduleCatalog" and `admintext` is the "textCatalog".
+
+```
+Lingo:
+  moduleCatalog: app
+  textCatalog: admintext
+```
+Place one or more yml-files (one for each language) for your texts in the `textCatalog` catalog.
+The files should follow the same structure as SilverStripes yml lang files.
+Example:
+
+```
+en:
+  List:
+    Header: 'This is a list header'
+  Company:
+    Header: This is a company header
+  Other:
+    Inject: '{One} text with {Two} placeholders'
+```
+
+Then when you run `dev/build` the texts in the yml-file(s) are read and stored in the database and can be edited from the admin.
+
+### Use in php function
+Lingo replaces the default MessageProvider so you are freee to use the SilverStripe translation 
+functions as normal. If a Lingo translation entity exists in the DB that will be returned, 
+otherwise it will look in the yml-files and see if the entity exists there.
+```
+//with string
+_t('Namespace.Entity','String to translate');
+
+```
+
+### Use in template
+```
+//with string
+<%t Namespace.Entity "String to translate" %>
+
+```

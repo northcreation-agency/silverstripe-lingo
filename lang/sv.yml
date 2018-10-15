@@ -1,0 +1,22 @@
+sv:
+  Lingo:
+    PLURALNAME: Lingos
+    PLURALS:
+      one: 'A Lingo'
+      other: '{count} Lingos'
+    SINGULARNAME: Lingo
+    Entity: Entity
+    Name: Namn
+    Familyname: Kategori
+    IsEdited: Ja
+    Edited: Editerad
+    Value: Innehåll
+    Modified: Ändrad
+    Locale: Språk
+    OriginalValue: Innehåll innan ändring
+    NotEdited: ' '
+  LingoBuild:
+    StatusBuilt: Lingo
+    StatusCreated: 'Lingo texts read and saved to DB'
+  LingoAdmin:
+    MENUTITLE: Lingo

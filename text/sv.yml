@@ -1,0 +1,8 @@
+sv:
+  Test:
+    ListHeader: 'Det här är en List Header'
+  Bolag:
+    ListHeader: En bolagsheader
+  Alto:
+    Info: En text
+    Inject: '{One} text med {Two} variabler'

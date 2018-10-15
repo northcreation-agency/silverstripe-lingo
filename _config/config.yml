@@ -1,0 +1,20 @@
+---
+Name: 'lingo'
+After: 'i18nMessages'
+---
+SilverStripe\CMS\Model\SiteTree:
+  extensions:
+    - NorthCreationAgency\SilverStripeLingo\LingoPageExtension
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\i18n\Messages\MessageProvider:
+    class: NorthCreationAgency\SilverStripeLingo\LingoMessageProvider
+Lingo:
+  moduleCatalog: lingo
+  textCatalog: text
+#LeftAndMain:
+#  extra_requirements_css:
+#    - 'lingo/src/admin/css/lingo.css'
+
+#SilverStripe\Core\Injector\Injector:
+#  SilverStripe\i18n\Messages\Symfony\SymfonyMessageProvider:
+#    class: NorthCreationAgency\SilverStripeLingo\LingoMessageProvider

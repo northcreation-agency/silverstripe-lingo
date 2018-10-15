@@ -1,0 +1,8 @@
+en:
+  Test:
+    ListHeader: 'This is a List Header'
+  Bolag:
+    ListHeader: A company header
+  Alto:
+    Info: A text
+    Inject: '{One} text with {Two} variables'
