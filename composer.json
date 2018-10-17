@@ -1,9 +1,14 @@
 {
     "name": "northcreationagency/lingo",
-    "description": "Handle yml lang texts in SilverStripe admin",
+    "description": "Translate and handle keys from yml-files from within the SilverStripe admin.",
     "type": "silverstripe-vendormodule",
     "homepage": "https://github.com/northcreation-agency/silverstripe-lingo",
-    "keywords": ["silverstripe", "language", "translation", "yml"],
+    "keywords": [
+        "silverstripe",
+        "language",
+        "translation",
+        "yml"
+    ],
     "authors": [
         {
             "name": "Emil Berg",
@@ -12,10 +17,11 @@
     ],
     "license": "BSD-3-Clause",
     "support": {
-        "issues": "https://github.com/northcreation-agency/lingo/issues"
+        "issues": "https://github.com/northcreation-agency/silverstripe-lingo/issues"
     },
     "require": {
         "silverstripe/cms": "^4",
+        "silverstripe/framework": "^4",
         "ext-json": "*",
         "muskie9/data-to-arraylist": "2.0.0-beta2",
         "symfony/yaml": "^3"
@@ -32,6 +38,9 @@
         "psr-4": {
             "NorthCreationAgency\\SilverStripeLingo\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "installer-name": "lingo"
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
