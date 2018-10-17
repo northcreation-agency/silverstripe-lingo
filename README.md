@@ -9,6 +9,7 @@ Lingo lets developers define keys in yml-files in the same style as the normal l
 * SilverStripe 4.2+
 
 ##Installation
+
 `composer require northcreationagency/silverstripe-lingo`
 
 ## How to use
