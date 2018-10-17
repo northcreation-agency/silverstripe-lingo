@@ -8,6 +8,9 @@ Lingo lets developers define keys in yml-files in the same style as the normal l
 
 * SilverStripe 4.2+
 
+##Installation
+`composer require northcreationagency/silverstripe-lingo`
+
 ## How to use
 
 Set the location of the file/s that should be used for the texts to be handled in the yml config file of your project, ie:  `app/_config/mysite.yml`
