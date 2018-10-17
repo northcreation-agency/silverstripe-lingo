@@ -39,9 +39,6 @@
             "NorthCreationAgency\\SilverStripeLingo\\Tests\\": "tests/"
         }
     },
-    "extra": {
-        "installer-name": "lingo"
-    },
     "prefer-stable": true,
     "minimum-stability": "dev"
 }
