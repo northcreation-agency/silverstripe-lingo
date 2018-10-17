@@ -14,29 +14,19 @@ use SilverStripe\i18n\Messages\Symfony\SymfonyMessageProvider;
 
 class LingoMessageProvider extends SymfonyMessageProvider
 {
-    private static $is_build;
     private static $intl_locale;
 
     /**
      * @param $entity
      * @return mixed|null
      */
-    private function getLingoValue($entity)
+    private function getLingoValue($entity, $locale)
     {
-        if(self::$is_build === null){
-            self::$is_build = LingoBuild::is_dev_build();
-        }
 
-        if(self::$is_build){
-            return null;
-        }
-
-        // get current locale
         if(self::$intl_locale === null){
             self::$intl_locale = new IntlLocales();
         }
 
-        $locale = i18n::get_locale();
         $lang = self::$intl_locale->langFromLocale($locale);
         $lingo = Lingo::get()->filter(array(
             'Locale' => $lang,
@@ -46,15 +36,31 @@ class LingoMessageProvider extends SymfonyMessageProvider
 
     }
 
-    public function translate($entity, $default, $injection){
+    public function translate($entity, $default, $injection)
+    {
+        // Ensure localisation is ready
+        $locale = i18n::get_locale();
+        $this->load($locale);
 
-        $lingo = $this->getLingoValue($entity);
+        // Prepare arguments
+        $arguments = $this->templateInjection($injection);
 
-        if($lingo){
-            return $lingo;
+        // Pass to symfony translator
+        $result = $this->getTranslator()->trans($entity, $arguments, 'messages', $locale);
+
+        //See if we have a Lingo translation if none is found
+        if ($entity === $result) {
+            $result = $this->getLingoValue($entity, $locale);
+
+            if($result){
+                return $result;
+            }
+
+            // else Manually inject default if no translation found
+            $result = $this->getTranslator()->trans($default, $arguments, 'messages', $locale);
         }
 
-        return parent::translate($entity, $default, $injection);
+        return $result;
     }
 
 }

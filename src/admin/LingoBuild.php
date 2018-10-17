@@ -83,10 +83,7 @@ class LingoBuild
 
         return $langs;
     }
-
-
-
-
+    
     /**
      * @param $locale
      * @return mixed
@@ -102,17 +99,6 @@ class LingoBuild
         }
         return $locale;
     }
-
-    //check if dev/build currently is the request being run
-    public static function is_dev_build(){
-        if(Controller::curr() && Controller::curr()->getRequest()){
-            $requestedDevBuild = (stripos(Controller::curr()->getRequest()->getURL(), 'dev/build') === 0);
-            return $requestedDevBuild;
-        }
-        return false;
-    }
-
-
 
     private function init(){
 
