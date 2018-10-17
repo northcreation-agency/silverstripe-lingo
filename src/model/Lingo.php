@@ -29,7 +29,7 @@ class Lingo extends DataObject {
         'Name'      => 'Varchar(255)',
         'Familyname' => 'Varchar(255)',
         'Value'	=> 'Text',
-        'OriginalValue'	=> 'Text',
+        'FileValue'	=> 'Text',
         'Entity' => 'Varchar(255)',
         'Locale' => 'Varchar(10)',
         'Status' => "Enum('Active,Obsolete', 'Active')",
@@ -41,7 +41,8 @@ class Lingo extends DataObject {
         'Familyname',
         'Name',
         'Modified',
-        'Locale'
+        'Locale',
+        'Status'
     );
 
     private static $default_sort = 'Familyname ASC';
@@ -72,17 +73,23 @@ class Lingo extends DataObject {
         $fields->removeByName('Familyname');
         $fields->removeByName('Name');
         $fields->removeByName('Status');
-        $fields->removeByName('OriginalValue');
+        $fields->removeByName('FileValue');
 
         $fields->addFieldToTab('Root.Main', ReadonlyField::create('Entity', _t('Lingo.Entity','Entity')));
-        //$fields->addFieldToTab('Root.Main', ReadonlyField::create('Name', _t('Lingo.Name','Name')));
         $fields->addFieldToTab('Root.Main',  TextareaField::create('Value', _t('Lingo.Value','Value'))->setRows(3));
         $fields->addFieldToTab('Root.Main', ReadonlyField::create('Locale', _t('Lingo.Locale','Locale')));
 
 
         if($this->isModified()){
-            $fields->addFieldToTab('Root.Main', ReadonlyField::create('OriginalValue', _t('Lingo.OriginalValue', 'Original value'))->addExtraClass('muted'));
-            $fields->addFieldToTab('Root.Main', ReadonlyField::create('LastEdited', _t('Lingo.Modified', 'Modified'))->addExtraClass('muted'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('FileValue', _t('Lingo.FileValue', 'File value')));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('LastEdited', _t('Lingo.Modified', 'Modified')));
+        }
+
+        if($this->canDelete()){
+            $fields->addFieldToTab('Root.Main',
+                ReadonlyField::create('Status', _t('Lingo.Status', 'Status'))
+                    ->setRightTitle(_t('Lingo.InfoObsolete', 'The entity can be deleted')));
+
         }
 
         return $fields;
@@ -107,15 +114,13 @@ class Lingo extends DataObject {
             'restrictFields' => array('Name', 'Value', 'Familyname', 'Locale')
         ));
 
-        //TODO: Use "get()->distinct()" instead. But couldnt get it to work...
-        //Tried: Lingo::get()->distinct(true)->setQueriedColumns(array('Familyname'))
         $source = GroupedList::create(Lingo::get())->GroupedBy('Familyname')->map('Familyname','Familyname');
         $fields->dataFieldByName('Familyname')->setSource($source);
-        $fields->dataFieldByName('Familyname')->setEmptyString('');
+        $fields->dataFieldByName('Familyname')->setEmptyString(_t('Lingo.Select', 'Select'));
 
         $locsource = GroupedList::create(Lingo::get())->GroupedBy('Locale')->map('Locale','Locale');
         $fields->dataFieldByName('Locale')->setSource($locsource);
-        $fields->dataFieldByName('Locale')->setEmptyString('');
+        $fields->dataFieldByName('Locale')->setEmptyString(_t('Lingo.Select', 'Select'));
 
         $filters = array(
             'Locale' => new PartialMatchFilter('Locale'),
@@ -144,7 +149,7 @@ class Lingo extends DataObject {
     }*/
 
     public function isModified(){
-        return strcmp($this->Value, $this->OriginalValue) !== 0;
+        return strcmp($this->Value, $this->FileValue) !== 0;
     }
 
     public function getModified(){

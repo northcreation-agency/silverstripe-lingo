@@ -23,6 +23,7 @@ use SilverStripe\ORM\ArrayList;
 use SilverStripe\ORM\DB;
 use SilverStripe\View\ArrayData;
 use Symfony\Component\Yaml\Yaml;
+use NorthCreationAgency\SilverStripeLingo\Lingo;
 
 class LingoBuild
 {
@@ -36,6 +37,7 @@ class LingoBuild
 
     const STATUS_BUILT = 'Built';
     const STATUS_CREATED = 'Created';
+    const STATUS_ERROR = 'Error';
 
 
     public function __construct(){
@@ -44,7 +46,6 @@ class LingoBuild
 
     public static function get_lang_dir($module) {
         $modulePath = ModuleLoader::getModule($module)->getRelativePath();
-        //return $modulePath.DIRECTORY_SEPARATOR.self::$textCatalog;
         return Controller::join_links(Director::baseFolder(), $modulePath, self::$textCatalog);
     }
 
@@ -102,18 +103,27 @@ class LingoBuild
         return $locale;
     }
 
+    //check if dev/build currently is the request being run
+    public static function is_dev_build(){
+        if(Controller::curr() && Controller::curr()->getRequest()){
+            $requestedDevBuild = (stripos(Controller::curr()->getRequest()->getURL(), 'dev/build') === 0);
+            return $requestedDevBuild;
+        }
+        return false;
+    }
+
 
 
     private function init(){
 
         //get config settings
-        self::$moduleCatalog = Config::inst()->get('Lingo', 'moduleCatalog');
-        self::$textCatalog = Config::inst()->get('Lingo', 'textCatalog');
+        self::$moduleCatalog = Config::inst()->get(Lingo::class, 'moduleCatalog');
+        self::$textCatalog = Config::inst()->get(Lingo::class, 'textCatalog');
 
         if( !(isset(self::$moduleCatalog) && isset(self::$textCatalog)) ){
-            user_error('Lingo moduleCatalog and textCatalog is not set in config');
+            self::$status = self::STATUS_ERROR;
+            return;
         }
-
 
         $languages = self::getLanguages();
 
@@ -175,14 +185,18 @@ class LingoBuild
                     $ymlValue = self::$yml_list_entities[$item->Entity];
 
                     //test if the value in the yml file has changed since the object was created
-                    if(strcmp($item->OriginalValue, $ymlValue) != 0){
+                    if(strcmp($item->FileValue, $ymlValue) != 0){
                         //the values are not the same
 
                         //test if user has updated the value in DB
-                        if(strcmp($item->Value, $item->OriginalValue) == 0){
-                            //the value and original value is the same, update
+                        if(strcmp($item->Value, $item->FileValue) == 0){
+                            //the value and file value is the same, update
                             $item->Value = $ymlValue;
-                            $item->OriginalValue = $ymlValue;
+                            $item->FileValue = $ymlValue;
+                            $item->write();
+                        }
+                        else{ //update only File value, ie the value from the Yml file
+                            $item->FileValue = $ymlValue;
                             $item->write();
                         }
                     }
@@ -198,7 +212,7 @@ class LingoBuild
                 $lingo->Name = $item->Name;
                 $lingo->Familyname = $item->Familyname;
                 $lingo->Value = $item->Value;
-                $lingo->OriginalValue = $item->Value;
+                $lingo->FileValue = $item->Value;
                 $lingo->Entity = $item->Entity;
                 $lingo->Locale = $item->Locale;
                 $lingo->write();
@@ -208,7 +222,6 @@ class LingoBuild
     }
 
     private function loadTranslationData($lang) {
-        //$namespaces = new ArrayList();
         $lang_file = self::get_lang_file(self::$moduleCatalog, $lang);
 
         $temp_lang = Yaml::parseFile($lang_file);
@@ -240,10 +253,12 @@ class LingoBuild
 
     public function getBuildStatus(){
         switch (self::$status) {
+            case self::STATUS_ERROR:
+                return DB::alteration_message(_t('LingoBuild.StatusErrorConfig', 'Lingo config error'), 'error');
             case self::STATUS_CREATED:
                return DB::alteration_message(_t('LingoBuild.StatusCreated', 'Lingo texts read and saved to DB'), 'created');
             default:
-                return DB::alteration_message(_t('LingoBuild.StatusBuilt', 'Lingo'), '');
+                return DB::alteration_message(self::class, '');
         }
     }
 

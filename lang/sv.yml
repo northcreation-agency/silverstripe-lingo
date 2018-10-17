@@ -5,7 +5,7 @@ sv:
       one: 'A Lingo'
       other: '{count} Lingos'
     SINGULARNAME: Lingo
-    Entity: Entity
+    Entity: Nyckelvärde
     Name: Namn
     Familyname: Kategori
     IsEdited: Ja
@@ -13,10 +13,13 @@ sv:
     Value: Innehåll
     Modified: Ändrad
     Locale: Språk
-    OriginalValue: Innehåll innan ändring
+    FileValue: Innehåll i Yml-fil
     NotEdited: ' '
+    InfoObsolete: 'Nyckelvärdet har tagits bort ur Yml-filen och kan tas bort'
+    Select: Välj
   LingoBuild:
     StatusBuilt: Lingo
     StatusCreated: 'Lingo texts read and saved to DB'
+    StatusErrorConfig: 'Lingo moduleCatalog and textCatalog is not set in config'
   LingoAdmin:
     MENUTITLE: Lingo

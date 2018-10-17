@@ -8,13 +8,6 @@ SilverStripe\CMS\Model\SiteTree:
 SilverStripe\Core\Injector\Injector:
   SilverStripe\i18n\Messages\MessageProvider:
     class: NorthCreationAgency\SilverStripeLingo\LingoMessageProvider
-Lingo:
-  moduleCatalog: lingo
-  textCatalog: text
-#LeftAndMain:
-#  extra_requirements_css:
-#    - 'lingo/src/admin/css/lingo.css'
-
-#SilverStripe\Core\Injector\Injector:
-#  SilverStripe\i18n\Messages\Symfony\SymfonyMessageProvider:
-#    class: NorthCreationAgency\SilverStripeLingo\LingoMessageProvider
+#NorthCreationAgency\SilverStripeLingo\Lingo:
+#  moduleCatalog: lingo
+#  textCatalog: text

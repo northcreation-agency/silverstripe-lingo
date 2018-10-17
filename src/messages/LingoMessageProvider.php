@@ -14,16 +14,30 @@ use SilverStripe\i18n\Messages\Symfony\SymfonyMessageProvider;
 
 class LingoMessageProvider extends SymfonyMessageProvider
 {
+    private static $is_build;
+    private static $intl_locale;
+
     /**
      * @param $entity
      * @return mixed|null
      */
     private function getLingoValue($entity)
     {
+        if(self::$is_build === null){
+            self::$is_build = LingoBuild::is_dev_build();
+        }
+
+        if(self::$is_build){
+            return null;
+        }
+
         // get current locale
+        if(self::$intl_locale === null){
+            self::$intl_locale = new IntlLocales();
+        }
+
         $locale = i18n::get_locale();
-        $intlLocales = new IntlLocales();
-        $lang = $intlLocales->langFromLocale($locale);
+        $lang = self::$intl_locale->langFromLocale($locale);
         $lingo = Lingo::get()->filter(array(
             'Locale' => $lang,
             'Entity' => $entity

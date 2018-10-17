@@ -13,10 +13,13 @@ en:
     Value: Value
     Modified: Modified
     Locale: Locale
-    OriginalValue: 'Original value'
+    FileValue: 'Value in Yml file'
     NotEdited: ' '
+    InfoObsolete: 'The Entity has been removed from the Yml file and can be safely deleted'
+    Select: Select
   LingoBuild:
     StatusBuilt: Lingo
     StatusCreated: 'Lingo texts read and saved to DB'
+    StatusErrorConfig: 'Lingo moduleCatalog and textCatalog is not set in config'
   LingoAdmin:
     MENUTITLE: Lingo
