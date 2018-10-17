@@ -1,6 +1,6 @@
 # Lingo
 
-Lingo lets developers define variables in yml-files in the same style as the normal lang-files but that can be viewed and translated in the SilverStripe admin.
+Lingo lets developers define keys in yml-files in the same style as the normal lang-files but that can be viewed and translated from within the SilverStripe admin.
 
 ## TODO
 * ~~Make Lingo translations work with variables~~ 
@@ -39,7 +39,6 @@ en:
 
 Then when you run `dev/build` the texts in the yml-file(s) are read and stored in the database and can be edited from the admin.
 
-### How to use 
 Use the SilverStripe translation functions as normal. If a Lingo translation entity exists in the DB the value of that will be returned, otherwise it will look in the yml-files and see if the entity exists there.
 
 
