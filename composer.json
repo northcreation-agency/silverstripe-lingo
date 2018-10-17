@@ -1,5 +1,5 @@
 {
-    "name": "northcreationagency/lingo",
+    "name": "northcreationagency/silverstripe-lingo",
     "description": "Translate and handle keys from yml-files from within the SilverStripe admin.",
     "type": "silverstripe-vendormodule",
     "homepage": "https://github.com/northcreation-agency/silverstripe-lingo",
@@ -38,6 +38,9 @@
         "psr-4": {
             "NorthCreationAgency\\SilverStripeLingo\\Tests\\": "tests/"
         }
+    },
+    "extra": {
+        "installer-name": "lingo"
     },
     "prefer-stable": true,
     "minimum-stability": "dev"
