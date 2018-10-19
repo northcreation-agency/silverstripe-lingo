@@ -5,4 +5,4 @@ sv:
     ListHeader: En bolagsheader
   Alto:
     Info: En text
-    Inject: '{One} text med {Two} variabler'
+#    Inject: '{One} text med {Two} variabler'

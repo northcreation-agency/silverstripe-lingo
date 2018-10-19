@@ -155,17 +155,4 @@ class Lingo extends DataObject {
     public function getModified(){
         return $this->isModified() ?  _t('Lingo.IsEdited', 'Yes') :  _t('Lingo.NotEdited', ' ');
     }
-
-    /**
-     * Helper function to use in cases where translation is needed but no inheritance from DataObject exists.
-     * Ex: Lingo::instance()->tL('Example.Text', 'Fallback text')
-     * @return Lingo
-     */
-    public static function instance(){
-        if(!self::$instance){
-            self::$instance = new self();
-        }
-        return self::$instance;
-
-    }
 }

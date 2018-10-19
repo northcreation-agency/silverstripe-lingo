@@ -5,4 +5,4 @@ en:
     ListHeader: A company header
   Alto:
     Info: A text
-    Inject: '{One} text with {Two} variables'
+#    Inject: '{One} text with {Two} variables'
