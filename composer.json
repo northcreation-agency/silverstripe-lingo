@@ -22,9 +22,7 @@
     "require": {
         "silverstripe/cms": "^4",
         "silverstripe/framework": "^4",
-        "ext-json": "*",
-        "muskie9/data-to-arraylist": "2.0.0-beta2",
-        "symfony/yaml": "^3"
+        "muskie9/data-to-arraylist": "^2"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
