@@ -42,8 +42,10 @@ en:
 ```
 
 Then when you run `dev/build` the texts in the yml-file(s) are read and stored in the database and can be edited from the admin.
+The Lingo cache is also cleared on build.
 
-Use the SilverStripe translation functions as normal. If a Lingo translation entity exists in the DB the value of that will be returned, otherwise it will look in the yml-files and see if the entity exists there.
+Use the SilverStripe translation functions as normal. It will first search the regular yml-files for the entity. If it not 
+exists there it will check if a Lingo translation entity exists in the DB. If it does the value of that will be cached and returned.
 
 
 #### Use in php function
