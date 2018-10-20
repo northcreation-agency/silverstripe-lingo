@@ -160,7 +160,10 @@ class Lingo extends DataObject {
     {
         parent::onAfterWrite();
 
-        //delete lingo cache if set
-        LingoCache::clear();
+        $cacheKey = LingoCache::get_cache_key($this->Entity, $this->Locale);
+        //see if entity is in cache
+        if(LingoCache::has_value($cacheKey)){
+            return LingoCache::delete_value($cacheKey);
+        }
     }
 }

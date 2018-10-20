@@ -33,6 +33,11 @@ class LingoCache
         return $cache->has($cacheKey);
     }
 
+    public static function delete_value($cacheKey){
+        $cache = self::get_cache();
+        $cache->delete($cacheKey);
+    }
+
     /**
      * Generates a cachekey with the given parameters
      *
