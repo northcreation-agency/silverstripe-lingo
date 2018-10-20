@@ -102,6 +102,9 @@ class LingoBuild
 
     private function init(){
 
+        //clear old cache if set
+        LingoCache::clear();
+
         //get config settings
         self::$moduleCatalog = Config::inst()->get(Lingo::class, 'moduleCatalog');
         self::$textCatalog = Config::inst()->get(Lingo::class, 'textCatalog');

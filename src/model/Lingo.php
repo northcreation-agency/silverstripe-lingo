@@ -155,4 +155,12 @@ class Lingo extends DataObject {
     public function getModified(){
         return $this->isModified() ?  _t('Lingo.IsEdited', 'Yes') :  _t('Lingo.NotEdited', ' ');
     }
+
+    public function onAfterWrite()
+    {
+        parent::onAfterWrite();
+
+        //delete lingo cache if set
+        LingoCache::clear();
+    }
 }

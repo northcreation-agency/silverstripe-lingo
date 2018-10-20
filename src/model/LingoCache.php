@@ -44,4 +44,9 @@ class LingoCache
     {
         return md5(serialize($entity)) . '#' . md5(serialize($locale));
     }
+
+    public static function clear(){
+        $cache = self::get_cache();
+        $cache->clear();
+    }
 }
