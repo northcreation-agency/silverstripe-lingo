@@ -1,6 +1,8 @@
 ---
 Name: 'lingo'
-After: 'i18nMessages'
+After:
+  - 'i18nMessages'
+  - '#corecache'
 ---
 SilverStripe\CMS\Model\SiteTree:
   extensions:
@@ -8,6 +10,10 @@ SilverStripe\CMS\Model\SiteTree:
 SilverStripe\Core\Injector\Injector:
   SilverStripe\i18n\Messages\MessageProvider:
     class: NorthCreationAgency\SilverStripeLingo\LingoMessageProvider
+  Psr\SimpleCache\CacheInterface.LingoCache:
+    factory: SilverStripe\Core\Cache\CacheFactory
+    constructor:
+      namespace: "LingoCache"
 #NorthCreationAgency\SilverStripeLingo\Lingo:
 #  moduleCatalog: lingo
 #  textCatalog: text

@@ -22,6 +22,12 @@ class LingoMessageProvider extends SymfonyMessageProvider
      */
     private function getLingoValue($entity, $locale)
     {
+        $cacheKeyEntityLoc = $entity . "." . $locale;
+        //see if entity is in cache
+        if(LingoCache::has_value($cacheKeyEntityLoc)){
+            $val = LingoCache::get_value($cacheKeyEntityLoc);
+            return $val;
+        }
 
         if(self::$intl_locale === null){
             self::$intl_locale = new IntlLocales();
@@ -32,7 +38,14 @@ class LingoMessageProvider extends SymfonyMessageProvider
             'Locale' => $lang,
             'Entity' => $entity
         ))->first();
-        return $lingo ? $lingo->Value : null;
+
+        if(!$lingo){
+            return null;
+        }
+
+        LingoCache::set_value($cacheKeyEntityLoc, $lingo->Value);
+
+        return $lingo->Value;
 
     }
 
