@@ -38,9 +38,7 @@ class Lingo extends DataObject {
     private static $summary_fields = array(
         'Entity',
         'Value',
-        'Familyname',
-        'Name',
-        'Modified',
+        'FileValueModified',
         'Locale',
         'Status'
     );
@@ -98,12 +96,14 @@ class Lingo extends DataObject {
     public function fieldLabels($includerelations = true) {
         $labels = parent::fieldLabels($includerelations);
 
-        $labels['Familyname'] = _t('Lingo.Familyname', 'Familyname');
-        $labels['Name'] =  _t('Lingo.Name', 'Name');
-        $labels['Value'] =  _t('Lingo.Value', 'Value');
-        $labels['Modified'] =  _t('Lingo.Modified', 'Modified');
-        $labels['Locale'] =  _t('Lingo.Locale', 'Locale');
+        //$labels['Familyname'] = _t('Lingo.Familyname', 'Familyname');
+        //$labels['Name'] =  _t('Lingo.Name', 'Name');
         $labels['Entity'] =  _t('Lingo.Entity', 'Entity');
+        $labels['Value'] =  _t('Lingo.Value', 'Value');
+        $labels['FileValueModified'] =  _t('Lingo.FileValueModified', 'File value');
+        $labels['Locale'] =  _t('Lingo.Locale', 'Locale');
+        $labels['Modified'] =  _t('Lingo.Modified', 'Modified');
+
 
         return $labels;
     }
@@ -156,12 +156,16 @@ class Lingo extends DataObject {
         return $this->isModified() ?  _t('Lingo.IsEdited', 'Yes') :  _t('Lingo.NotEdited', ' ');
     }
 
+    public function getFileValueModified(){
+        return $this->isModified() ? $this->FileValue : ' ';
+    }
+
     public function onAfterWrite()
     {
         parent::onAfterWrite();
 
         $cacheKey = LingoCache::get_cache_key($this->Entity, $this->Locale);
-        //see if entity is in cache
+
         if(LingoCache::has_value($cacheKey)){
             return LingoCache::delete_value($cacheKey);
         }

@@ -14,6 +14,7 @@ sv:
     Modified: Ändrad
     Locale: Språk
     FileValue: Innehåll i Yml-fil
+    FileValueModified: Filinnehåll
     NotEdited: ' '
     InfoObsolete: 'Nyckelvärdet har tagits bort ur Yml-filen och kan tas bort'
     Select: Välj

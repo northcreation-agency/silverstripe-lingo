@@ -12,8 +12,9 @@ en:
     Edited: Edited
     Value: Value
     Modified: Modified
-    Locale: Locale
+    Locale: Lang
     FileValue: 'Value in Yml file'
+    FileValueModified: 'File value'
     NotEdited: ' '
     InfoObsolete: 'The Entity has been removed from the Yml file and can be safely deleted'
     Select: Select
