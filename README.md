@@ -2,11 +2,9 @@
 
 Lingo lets developers define keys in yml-files in the same style as the normal lang-files but that can be viewed and translated from within the SilverStripe admin.
 
-## TODO
-* ~~Make Lingo translations work with variables~~ 
 ## Requirements
 
-* SilverStripe 4.2+
+* SilverStripe 4 (tested with 4.2)
 
 ## Installation
 

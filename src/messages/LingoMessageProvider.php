@@ -14,39 +14,8 @@ use SilverStripe\i18n\Messages\Symfony\SymfonyMessageProvider;
 
 class LingoMessageProvider extends SymfonyMessageProvider
 {
-    private static $intl_locale;
-
-    /**
-     * @param $entity
-     * @return mixed|null
-     */
-    private function getLingoValue($entity, $locale)
-    {
-        $cacheKey = LingoCache::get_cache_key($entity, $locale);
-
-        //see if entity is in cache
-        if(LingoCache::has_value($cacheKey)){
-            return LingoCache::get_value($cacheKey);
-        }
-
-        if(self::$intl_locale === null){
-            self::$intl_locale = new IntlLocales();
-        }
-
-        $lang = self::$intl_locale->langFromLocale($locale);
-        $lingo = Lingo::get()->filter(array(
-            'Locale' => $lang,
-            'Entity' => $entity
-        ))->first();
-
-        if(!$lingo){
-            return null;
-        }
-
-        LingoCache::set_value($cacheKey, $lingo->Value);
-
-        return $lingo->Value;
-
+    private function getLingoTranslator(){
+        return new LingoTranslator();
     }
 
     public function translate($entity, $default, $injection)
@@ -63,7 +32,9 @@ class LingoMessageProvider extends SymfonyMessageProvider
 
         //See if we have a Lingo translation if none is found
         if ($entity === $result) {
-            $result = $this->getLingoValue($entity, $locale);
+            //$result = $this->getLingoValue($entity, $locale);
+
+            $result = $this->getLingoTranslator()->trans($entity, $arguments, $locale);
 
             if($result){
                 return $result;
