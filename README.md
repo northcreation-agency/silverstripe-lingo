@@ -49,14 +49,24 @@ exists there it will check if a Lingo translation entity exists in the DB. If it
 #### Use in php function
 
 ```
-//with string
-_t('Namespace.Entity','String to translate');
+
+// Simple string translation
+_t('LeftAndMain.FILESIMAGES','Files & Images');
+
+// Using injection to add variables into the translated strings.
+_t('CMSMain.RESTORED',
+    "Restored {value} successfully",
+    ['value' => $itemRestored]
+);
 
 ```
 
 #### Use in template
 ```
 //with string
-<%t Namespace.Entity "String to translate" %>
+<%t Foo.BAR 'Bar' %>
+
+//with variable
+<%t Member.WELCOME 'Welcome {name} to {site}' name=$Member.Name site="Foobar.com" %>
 
 ```
