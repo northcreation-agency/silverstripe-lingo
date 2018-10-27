@@ -18,14 +18,14 @@ Set the location of the file/s that should be used for the texts to be handled i
 
 `textCatalog` is the catalog that will contain the yml-files to be read by the module.
 
-Example: app/admintext
+Example: app/lingotext
 
-Where `app` is the "moduleCatalog" and `admintext` is the "textCatalog".
+Where `app` is the "moduleCatalog" and `lingotext` is the "textCatalog".
 
 ```
 NorthCreationAgency\SilverStripeLingo\Lingo:
   moduleCatalog: app
-  textCatalog: admintext
+  textCatalog: lingotext
 ```
 Place one or more yml-files (one for each language) for your texts in the `textCatalog` catalog.
 The files should follow the same structure as SilverStripes yml lang files.
