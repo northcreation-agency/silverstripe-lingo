@@ -14,6 +14,10 @@ SilverStripe\Core\Injector\Injector:
     factory: SilverStripe\Core\Cache\CacheFactory
     constructor:
       namespace: "LingoCache"
+
+SilverStripe\ORM\ArrayList:
+  extensions:
+    - muskie9\DataToArrayList\Extension\ArrayListRandomSortExtension      
    
 #NorthCreationAgency\SilverStripeLingo\Lingo:
 #  moduleCatalog: lingo
