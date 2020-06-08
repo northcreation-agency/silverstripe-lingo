@@ -1,13 +1,13 @@
 <?php
 
-namespace muskie9\DataToArrayList\Extension;
+namespace NorthCreationAgency\SilverStripeLingo;
     
-use SilverStripe\Core\Extension;
+use SilverStripe\ORM\DataExtension;
 
 /**
  * Class ArrayListRandomSortExtension
  */
-class ArrayListRandomSortExtension extends Extension
+class ArrayListRandomSortExtension extends DataExtension
 {
 
     /**

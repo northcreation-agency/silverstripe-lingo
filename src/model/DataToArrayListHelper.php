@@ -1,6 +1,6 @@
 <?php
 
-namespace muskie9\DataToArrayList\ORM;
+namespace NorthCreationAgency\SilverStripeLingo;
 
 use SilverStripe\ORM\DataList,
     SilverStripe\ORM\ArrayList;

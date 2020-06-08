@@ -10,7 +10,7 @@ namespace NorthCreationAgency\SilverStripeLingo;
 
 use SilverStripe\ORM\DataExtension;
 
-class LingoPageExtension extends DataExtension {
+class LingoDOExtension extends DataExtension {
     private static $buildLingo = true;
 
     public function requireDefaultRecords(){

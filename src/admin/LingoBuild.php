@@ -11,7 +11,7 @@
 namespace NorthCreationAgency\SilverStripeLingo;
 
 use DirectoryIterator;
-use muskie9\DataToArrayList\ORM\DataToArrayListHelper;
+use NorthCreationAgency\SilverStripeLingo\DataToArrayListHelper;
 use SilverStripe\Control\Controller;
 use SilverStripe\Control\Director;
 use SilverStripe\Core\Config\Config;

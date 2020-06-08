@@ -20,8 +20,8 @@
         "issues": "https://github.com/northcreation-agency/silverstripe-lingo/issues"
     },
     "require": {
-        "silverstripe/cms": "^4",
-        "silverstripe/framework": "^4"
+        "silverstripe/framework": "4.5.0@stable",
+        "silverstripe/admin": "^1.5"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"

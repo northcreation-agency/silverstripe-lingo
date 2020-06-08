@@ -4,9 +4,9 @@ After:
   - 'i18nMessages'
   - '#corecache'
 ---
-SilverStripe\CMS\Model\SiteTree:
+SilverStripe\ORM\DataObject:
   extensions:
-    - NorthCreationAgency\SilverStripeLingo\LingoPageExtension
+    - NorthCreationAgency\SilverStripeLingo\LingoDOExtension
 SilverStripe\Core\Injector\Injector:
   SilverStripe\i18n\Messages\MessageProvider:
     class: NorthCreationAgency\SilverStripeLingo\LingoMessageProvider
@@ -17,7 +17,7 @@ SilverStripe\Core\Injector\Injector:
 
 SilverStripe\ORM\ArrayList:
   extensions:
-    - muskie9\DataToArrayList\Extension\ArrayListRandomSortExtension      
+    - NorthCreationAgency\SilverStripeLingo\ArrayListRandomSortExtension      
    
 #NorthCreationAgency\SilverStripeLingo\Lingo:
 #  moduleCatalog: lingo
