@@ -22,7 +22,7 @@
     "require": {
         "silverstripe/cms": "^4",
         "silverstripe/framework": "^4",
-        "muskie9/data-to-arraylist": "2.0.x-dev"
+        "muskie9/data-to-arraylist": "2.0.0"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
@@ -39,7 +39,5 @@
     },
     "extra": {
         "installer-name": "lingo"
-    },
-    "prefer-stable": true,
-    "minimum-stability": "dev"
+    }
 }
