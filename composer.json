@@ -22,7 +22,7 @@
     "require": {
         "silverstripe/cms": "^4",
         "silverstripe/framework": "^4",
-        "muskie9/data-to-arraylist": "2.0.0"
+        "muskie9/data-to-arraylist": "dev-master#a92542f7d92671f55aae7c01c45db2bee0fc1b20"
     },
     "require-dev": {
         "phpunit/phpunit": "^5.7"
