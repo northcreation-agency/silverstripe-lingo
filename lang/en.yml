@@ -23,4 +23,4 @@ en:
     StatusCreated: 'Lingo texts read and saved to DB'
     StatusErrorConfig: 'Lingo moduleCatalog and textCatalog is not set in config'
   LingoAdmin:
-    MENUTITLE: Lingo
+    MENUTITLE: Text
