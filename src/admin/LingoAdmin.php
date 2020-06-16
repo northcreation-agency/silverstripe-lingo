@@ -16,7 +16,7 @@ use SilverStripe\Forms\GridField\GridFieldPaginator;
 class LingoAdmin extends ModelAdmin {
     private static $managed_models = array('NorthCreationAgency\SilverStripeLingo\Lingo');
     private static $url_segment = 'lingo';
-    private static $table_name = 'LingoAdmin';
+    private static $table_name = 'LingoAdmin'; 
 
     //private static $menu_icon = 'vendor/lingo/client/images/icon-lingo.png';
     private static $model_importers = array();

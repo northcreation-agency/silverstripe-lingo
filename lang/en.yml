@@ -1,10 +1,10 @@
 en:
-  Lingo:
-    PLURALNAME: Lingos
+  NorthCreationAgency\SilverStripeLingo\Lingo:
+    PLURALNAME: Texts
     PLURALS:
-      one: 'A Lingo'
-      other: '{count} Lingos'
-    SINGULARNAME: Lingo
+      one: 'A Text'
+      other: '{count} Texts'
+    SINGULARNAME: Text
     Entity: Entity
     Name: Name
     Familyname: Familyname
@@ -18,9 +18,9 @@ en:
     NotEdited: ' '
     InfoObsolete: 'The Entity has been removed from the Yml file and can be safely deleted'
     Select: Select
-  LingoBuild:
+  NorthCreationAgency\SilverStripeLingo\LingoBuild:
     StatusBuilt: Lingo
     StatusCreated: 'Lingo texts read and saved to DB'
     StatusErrorConfig: 'Lingo moduleCatalog and textCatalog is not set in config'
-  LingoAdmin:
+  NorthCreationAgency\SilverStripeLingo\LingoAdmin:
     MENUTITLE: Text
