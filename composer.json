@@ -20,7 +20,7 @@
         "issues": "https://github.com/northcreation-agency/silverstripe-lingo/issues"
     },
     "require": {
-        "silverstripe/framework": "4.5.0@stable",
+        "silverstripe/framework": "^4.2",
         "silverstripe/admin": "^1.5"
     },
     "require-dev": {
