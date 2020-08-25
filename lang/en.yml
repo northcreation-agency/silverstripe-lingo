@@ -14,7 +14,7 @@ en:
     Modified: Modified
     Locale: Lang
     FileValue: 'Value in Yml file'
-    FileValueModified: 'File value'
+    FileValueModified: 'Old value'
     NotEdited: ' '
     InfoObsolete: 'The Entity has been removed from the Yml file and can be safely deleted'
     Select: Select
