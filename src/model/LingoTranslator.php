@@ -30,7 +30,7 @@ class LingoTranslator
         }
 
         $lingo = Lingo::get()->filter(array(
-            'Locale' => $localeOrLang,
+            'Locale' => $localeOrLang,  
             'Entity' => $entity
         ))->first();
 

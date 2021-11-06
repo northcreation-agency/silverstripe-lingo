@@ -8,18 +8,38 @@
 
 namespace NorthCreationAgency\SilverStripeLingo;
 
-use SilverStripe\i18n\Data\Intl\IntlLocales;
 use SilverStripe\i18n\i18n;
+use SilverStripe\Security\Security;
+use SilverStripe\Control\Controller;
+use SilverStripe\Security\Permission;
+use SilverStripe\Admin\AdminRootController;
+use SilverStripe\i18n\Data\Intl\IntlLocales;
 use SilverStripe\i18n\Messages\Symfony\SymfonyMessageProvider;
 
 class LingoMessageProvider extends SymfonyMessageProvider
 {
+    static $BUILD_URL = "dev/build";
+    static $TASKS_URL = "dev/tasks";
+
     private function getLingoTranslator(){
         return new LingoTranslator();
     }
 
+    private static function getAdminUrl(){
+        return AdminRootController::admin_url();
+    }
+
     public function translate($entity, $default, $injection)
     {
+        $url = $_SERVER['REQUEST_URI'];
+
+        $userInCMS = str_contains($url, static::getAdminUrl()) || str_contains($url, static::$BUILD_URL) || str_contains($url, static::$TASKS_URL);
+
+        //call symfony "original" function if in admin mode
+        if($userInCMS){
+            return parent::translate($entity, $default, $injection);
+        }
+
         // Ensure localisation is ready
         $locale = i18n::get_locale();
         $this->load($locale);

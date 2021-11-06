@@ -47,7 +47,7 @@ class LingoCache
      */
     public static function get_cache_key($entity, $locale)
     {
-        return md5(serialize($entity)) . '#' . md5(serialize($locale));
+        return md5(serialize($entity)) . md5(serialize($locale));
     }
 
     public static function clear(){

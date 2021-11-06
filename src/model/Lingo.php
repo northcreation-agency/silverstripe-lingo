@@ -8,16 +8,17 @@
  */
 namespace NorthCreationAgency\SilverStripeLingo;
 
+use SilverStripe\Core\Flushable;
+use SilverStripe\ORM\DataObject;
+use SilverStripe\ORM\GroupedList;
+use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\ReadonlyField;
 use SilverStripe\Forms\TextareaField;
-use SilverStripe\ORM\DataObject;
-use SilverStripe\ORM\Filters\PartialMatchFilter;
-use SilverStripe\ORM\GroupedList;
-use SilverStripe\ORM\Search\SearchContext;
 use SilverStripe\Security\Permission;
-use SilverStripe\Forms\DropdownField;
+use SilverStripe\ORM\Search\SearchContext;
+use SilverStripe\ORM\Filters\PartialMatchFilter;
 
-class Lingo extends DataObject {
+class Lingo extends DataObject implements Flushable{
 
     private static $instance = null;
 
@@ -148,6 +149,11 @@ class Lingo extends DataObject {
         return $this->LastEdited > $this->Created ?  _t('Lingo.IsEdited', 'Editerad') :  _t('Lingo.NotEdited', '');
     }*/
 
+    public static function flush()
+    {
+        LingoCache::clear();
+    }
+
     public function isModified(){
         return strcmp($this->Value, $this->FileValue) !== 0;
     }
@@ -164,10 +170,12 @@ class Lingo extends DataObject {
     {
         parent::onAfterWrite();
 
-        $cacheKey = LingoCache::get_cache_key($this->Entity, $this->Locale);
-
+        /*$cacheKey = LingoCache::get_cache_key($this->Entity, $this->Locale);
         if(LingoCache::has_value($cacheKey)){
             return LingoCache::delete_value($cacheKey);
-        }
+        }*/
+        //TODO: Find out why the above code to clear only the items cache is not working
+        //For now, clear the whole Lingo cache when a value changes/ is written
+        LingoCache::clear();
     }
 }

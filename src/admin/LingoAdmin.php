@@ -29,6 +29,8 @@ class LingoAdmin extends ModelAdmin {
     public function getEditForm($id = null, $fields = null) {
         $form = parent::getEditForm($id, $fields);
 
+        $itemsPerPage =  $this->config()->get('itemsPerPage') ?: 50;
+
         $gridFieldName = $this->sanitiseClassName($this->modelClass);
         $gridField = $form->Fields()->fieldByName($gridFieldName);
         if($gridField instanceof GridField) {
@@ -36,7 +38,7 @@ class LingoAdmin extends ModelAdmin {
             $btnNew = $conf->getComponentByType(GridFieldAddNewButton::class);
             $conf->removeComponentsByType($btnNew);
             $items = $conf->getComponentByType(GridFieldPaginator::class);
-            $items->setItemsPerPage(300);
+            $items->setItemsPerPage($itemsPerPage);
         }
 
         return $form;

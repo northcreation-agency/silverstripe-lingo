@@ -17,7 +17,10 @@ SilverStripe\Core\Injector\Injector:
 
 SilverStripe\ORM\ArrayList:
   extensions:
-    - NorthCreationAgency\SilverStripeLingo\ArrayListRandomSortExtension      
+    - NorthCreationAgency\SilverStripeLingo\ArrayListRandomSortExtension   
+
+NorthCreationAgency\SilverStripeLingo\LingoAdmin:
+  itemsPerPage: 50
    
 #NorthCreationAgency\SilverStripeLingo\Lingo:
 #  moduleCatalog: lingo
