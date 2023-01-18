@@ -4,7 +4,7 @@ Lingo lets developers define keys in yml-files in the same style as the normal l
 
 ## Requirements
 
-* SilverStripe 4 (tested with 4.2)
+* SilverStripe 4 (tested with 4.12)
 
 ## Installation
 
