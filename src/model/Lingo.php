@@ -10,6 +10,7 @@ namespace NorthCreationAgency\SilverStripeLingo;
 
 use SilverStripe\Core\Flushable;
 use SilverStripe\ORM\DataObject;
+use SilverStripe\Forms\TextField;
 use SilverStripe\ORM\GroupedList;
 use SilverStripe\Forms\DropdownField;
 use SilverStripe\Forms\ReadonlyField;
@@ -17,6 +18,7 @@ use SilverStripe\Forms\TextareaField;
 use SilverStripe\Security\Permission;
 use SilverStripe\ORM\Search\SearchContext;
 use SilverStripe\ORM\Filters\PartialMatchFilter;
+use NorthCreationAgency\SilverStripeLingo\LingoCache;
 
 class Lingo extends DataObject implements Flushable{
 
@@ -99,8 +101,8 @@ class Lingo extends DataObject implements Flushable{
 
         //$labels['Familyname'] = _t('Lingo.Familyname', 'Familyname');
         //$labels['Name'] =  _t('Lingo.Name', 'Name');
-        $labels['Entity'] =  _t('Lingo.Entity', 'Entity');
         $labels['Value'] =  _t('Lingo.Value', 'Value');
+        $labels['Entity'] =  _t('Lingo.Entity', 'Entity');
         $labels['FileValueModified'] =  _t('Lingo.FileValueModified', 'File value');
         $labels['Locale'] =  _t('Lingo.Locale', 'Locale');
         $labels['Modified'] =  _t('Lingo.Modified', 'Modified');
@@ -122,6 +124,8 @@ class Lingo extends DataObject implements Flushable{
         $locsource = GroupedList::create(Lingo::get())->GroupedBy('Locale')->map('Locale','Locale');
         $fields->dataFieldByName('Locale')->setSource($locsource);
         $fields->dataFieldByName('Locale')->setEmptyString(_t('Lingo.Select', 'Select'));
+
+        $fields->push(TextField::create('Value', 'Value'));
 
         $filters = array(
             'Locale' => new PartialMatchFilter('Locale'),
