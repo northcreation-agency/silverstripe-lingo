@@ -159,6 +159,10 @@ class Lingo extends DataObject implements Flushable{
     }
 
     public function isModified(){
+        if($this->Value === null){
+            return true;
+        }
+        
         return strcmp($this->Value, $this->FileValue) !== 0;
     }
 
