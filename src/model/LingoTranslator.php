@@ -60,7 +60,7 @@ class LingoTranslator
             $value = $this->getLingoValue($locale, $id);
         }
 
-        return strtr($value, $parameters);
+        return $value ? strtr($value, $parameters) : "";
     }
 
 }
