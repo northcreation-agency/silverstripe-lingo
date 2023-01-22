@@ -22,7 +22,7 @@ Example: app/lingotext
 
 Where `app` is the "moduleCatalog" and `lingotext` is the "textCatalog".
 
-![image](https://user-images.githubusercontent.com/1150252/213649472-ca70054c-2587-4cfe-9534-acd6ca48b904.png)
+![image](https://user-images.githubusercontent.com/1150252/213942223-30541b46-41d6-44d6-b052-1bb76114677e.png)
 
 ```
 NorthCreationAgency\SilverStripeLingo\Lingo:
