@@ -41,10 +41,28 @@ en:
     Header: This is a company header
 ```
 
-Then when you run `dev/build` the texts in the yml-file(s) are read and stored in the database and can be edited from the admin.
+### Sync the texts to the database
+
+To sync the texts from the yml files to the database add a url variable to the build url, like this: `dev/build?synclingo=1`  
+
+Then when you run `dev/build?synclingo=1` the texts in the yml-file(s) are read and stored in the database and can be edited from the admin.
 The Lingo cache is also cleared on build.
 
-Use the SilverStripe translation functions as normal. It will first search the regular yml-files for the entity. If it not 
+You can also add an extra config variable if you want it to always sync the lingo texts upon build. If you do the config like this the lingo texts will be read and synced to the database upon every `dev/build` without the need to use the url variable.
+
+```
+NorthCreationAgency\SilverStripeLingo\Lingo:
+  moduleCatalog: app
+  textCatalog: lingotext
+  syncOnBuild: true
+```
+There is also a task that can be used to sync the texts to the DB. You can run it via `dev/tasks/SyncLingoTask` . 
+
+### Usage
+
+Use the SilverStripe translation functions as you would normally use the Silverstripe translate function. 
+
+It will first search the regular yml-files for the entity. If it not 
 exists there it will check if a Lingo translation entity exists in the DB. If it does the value of that will be cached and returned.
 
 
